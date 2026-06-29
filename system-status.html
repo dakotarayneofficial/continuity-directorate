@@ -1,0 +1,255 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System Status — The Continuity Directorate</title>
+
+  <style>
+    :root {
+      --paper: #e8e1d2;
+      --ink: #202020;
+      --faded-ink: #625d55;
+      --line: #2b2b2b;
+      --panel: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.075;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.65'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    main {
+      width: min(900px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 62px 0 72px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 6px;
+      font-size: clamp(25px, 4vw, 34px);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .department,
+    .subheading,
+    .updated,
+    footer {
+      color: var(--faded-ink);
+    }
+
+    .department {
+      font-size: 17px;
+      letter-spacing: 0.03em;
+    }
+
+    .rule {
+      height: 1px;
+      margin: 38px 0;
+      background: var(--line);
+    }
+
+    .state {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .updated {
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .systems {
+      border-top: 1px solid var(--line);
+    }
+
+    .system-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .system-name {
+      font-weight: bold;
+    }
+
+    .system-status {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .system-status.nominal {
+      color: var(--ink);
+    }
+
+    .system-status.processing {
+      color: var(--faded-ink);
+    }
+
+    .notice {
+      margin-top: 34px;
+      border-left: 3px solid var(--line);
+      padding: 12px 16px;
+      color: var(--faded-ink);
+    }
+
+    .return-link {
+      display: inline-block;
+      color: var(--ink);
+      font-weight: bold;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .return-link:hover,
+    .return-link:focus {
+      color: var(--faded-ink);
+    }
+
+    footer {
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: min(100% - 32px, 900px);
+        padding-top: 38px;
+      }
+
+      .system-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .system-status {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>THE CONTINUITY DIRECTORATE</h1>
+      <div class="department">SYSTEM STATUS</div>
+    </header>
+
+    <div class="rule"></div>
+
+    <section aria-labelledby="current-state">
+      <p id="current-state" class="state">
+        <strong>Current Operational State:</strong> NOMINAL
+      </p>
+
+      <p class="updated">
+        Last reviewed: 14 October 1997
+      </p>
+
+      <div class="systems">
+        <div class="system-row">
+          <div class="system-name">Public Facilities</div>
+          <div class="system-status nominal">OPERATIONAL</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Publication Services</div>
+          <div class="system-status nominal">NOMINAL</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Records &amp; Retention</div>
+          <div class="system-status nominal">ACTIVE</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Route Guidance</div>
+          <div class="system-status nominal">AVAILABLE</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Accommodation Systems</div>
+          <div class="system-status nominal">READY</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Memory Archive</div>
+          <div class="system-status nominal">SYNCHRONIZED</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Assessment Services</div>
+          <div class="system-status nominal">ACCEPTING SCHEDULED ATTENDANCE</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Weather Integration</div>
+          <div class="system-status nominal">CURRENT</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Human Liaison</div>
+          <div class="system-status nominal">NO ACTION REQUIRED</div>
+        </div>
+
+        <div class="system-row">
+          <div class="system-name">Continuity Synchronisation</div>
+          <div class="system-status processing">PROCESSING</div>
+        </div>
+      </div>
+
+      <div class="notice">
+        No operational anomalies currently require public notification.
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <a class="return-link" href="index.html">
+      RETURN TO PUBLIC INFORMATION
+    </a>
+
+    <div class="rule"></div>
+
+    <footer>
+      This page has been retained for continuity purposes.
+    </footer>
+  </main>
+</body>
+</html>
+```
