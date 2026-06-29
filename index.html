@@ -3,82 +3,241 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Continuity Directorate</title>
+  <title>The Continuity Directorate — Public Information</title>
+
   <style>
+    :root {
+      --paper: #e8e1d2;
+      --ink: #202020;
+      --faded-ink: #625d55;
+      --line: #2b2b2b;
+      --panel: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background: #e8e1d2;
-      color: #1c1c1c;
+      background: var(--paper);
+      color: var(--ink);
       font-family: "Courier New", Courier, monospace;
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     main {
-      max-width: 760px;
-      margin: 48px auto;
-      padding: 0 24px;
+      width: min(900px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 62px 0 72px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
     }
 
     h1 {
-      font-size: 26px;
-      letter-spacing: 0.03em;
-      margin: 0 0 4px;
+      margin-bottom: 6px;
+      font-size: clamp(25px, 4vw, 34px);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
     }
 
     h2 {
+      margin-bottom: 18px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    .department {
+      color: var(--faded-ink);
+      font-size: 17px;
+      letter-spacing: 0.03em;
+    }
+
+    .rule {
+      height: 1px;
+      margin: 38px 0;
+      background: var(--line);
+    }
+
+    .status-line {
+      margin-bottom: 24px;
       font-size: 18px;
+    }
+
+    .status-line strong {
+      font-weight: bold;
+    }
+
+    .status-box {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 20px;
+    }
+
+    .status-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .publication {
       margin-top: 42px;
     }
 
-    hr {
-      border: 0;
-      border-top: 1px solid #222;
-      margin: 30px 0;
+    .publication-code {
+      margin-bottom: 22px;
+      font-size: 20px;
+      font-weight: bold;
     }
 
-    .small {
-      font-size: 13px;
+    .availability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
     }
 
-    .status {
-      margin: 22px 0;
-      padding: 16px;
-      border: 1px solid #222;
+    .availability-card {
+      min-height: 190px;
+      border: 1px solid var(--line);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    a {
-      color: #1c1c1c;
+    .availability-card p {
+      color: var(--faded-ink);
+    }
+
+    .action-link {
+      display: inline-block;
+      width: fit-content;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .action-link:hover,
+    .action-link:focus {
+      color: var(--faded-ink);
+    }
+
+    .pending {
+      color: var(--faded-ink);
+      text-decoration: none;
+      cursor: default;
+    }
+
+    .notice {
+      margin-top: 32px;
+      border-left: 3px solid var(--line);
+      padding: 12px 16px;
+      color: var(--faded-ink);
+    }
+
+    footer {
+      color: var(--faded-ink);
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: min(100% - 32px, 900px);
+        padding-top: 38px;
+      }
+
+      .availability-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <main>
-    <h1>THE CONTINUITY DIRECTORATE</h1>
-    <div>PUBLIC INFORMATION</div>
+    <header>
+      <h1>THE CONTINUITY DIRECTORATE</h1>
+      <div class="department">PUBLIC INFORMATION</div>
+    </header>
 
-    <hr>
+    <div class="rule"></div>
 
-    <p><strong>Service Status:</strong> NOMINAL</p>
+    <section aria-labelledby="system-status">
+      <p id="system-status" class="status-line">
+        <strong>Service Status:</strong> NOMINAL
+      </p>
 
-    <div class="status">
-      Existing facilities remain available.<br>
-      Scheduled activity will continue.<br>
-      No operational anomalies currently require public notification.
-    </div>
+      <div class="status-box">
+        <p>Existing facilities remain available.</p>
+        <p>Scheduled activity will continue.</p>
+        <p>No operational anomalies currently require public notification.</p>
+      </div>
+    </section>
 
-    <h2>Publication CS-27194-A</h2>
+    <section class="publication" aria-labelledby="publication-heading">
+      <div class="rule"></div>
 
-    <p>
-      Current availability: pending.<br>
-      Further information will be made available where appropriate.
-    </p>
+      <h2 id="publication-heading">PUBLICATION CS-27194-A</h2>
 
-    <hr>
+      <p class="publication-code">RETAINED AUDIO DOCUMENT</p>
 
-    <p class="small">
+      <p>
+        Associated material has been made available in limited physical format.
+        General audio availability remains pending.
+      </p>
+
+      <div class="availability-grid">
+        <article class="availability-card">
+          <div>
+            <h3>RETAINED PHYSICAL MATERIAL</h3>
+            <p>
+              A limited physical edition may be requested through the approved distribution channel.
+            </p>
+          </div>
+
+          <!-- Replace # with your CD store link later -->
+          <a class="action-link" href="#">
+            REQUEST RETAINED MATERIAL
+          </a>
+        </article>
+
+        <article class="availability-card">
+          <div>
+            <h3>GENERAL AUDIO AVAILABILITY</h3>
+            <p>
+              Future access may be recorded before wider release.
+            </p>
+          </div>
+
+          <!-- Replace # with your Spotify pre-save link later -->
+          <span class="action-link pending">
+            RECORD FUTURE AVAILABILITY
+          </span>
+        </article>
+      </div>
+
+      <div class="notice">
+        Existing recipients do not need to take further action.
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <footer>
       This page has been retained for continuity purposes.
-    </p>
+    </footer>
   </main>
 </body>
 </html>
