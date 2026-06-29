@@ -139,19 +139,21 @@
       color: var(--faded-ink);
     }
 
-    .action-link {
-      display: inline-block;
-      width: fit-content;
-      color: var(--ink);
-      font-weight: bold;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
+ .action-link,
+.section-link {
+  display: inline-block;
+  width: fit-content;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: bold;
+}
     .action-link:hover,
-    .action-link:focus {
-      color: var(--faded-ink);
-    }
+.action-link:focus,
+.section-link:hover,
+.section-link:focus {
+  color: var(--link-hover);
+}
 
     .pending {
       color: var(--faded-ink);
