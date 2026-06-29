@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material Issued — The Continuity Directorate</title>
+
+  <style>
+    :root {
+      --paper: #e8e1d2;
+      --ink: #202020;
+      --faded-ink: #625d55;
+      --line: #2b2b2b;
+      --panel: rgba(255, 255, 255, 0.08);
+      --link: #003f9e;
+      --link-hover: #001f5c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.075;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.65'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    main {
+      width: min(760px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 62px 0 72px;
+    }
+
+    h1, h2, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 6px;
+      font-size: clamp(25px, 4vw, 34px);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .department,
+    .muted,
+    footer {
+      color: var(--faded-ink);
+    }
+
+    .department {
+      font-size: 17px;
+      letter-spacing: 0.03em;
+    }
+
+    .rule {
+      height: 1px;
+      margin: 38px 0;
+      background: var(--line);
+    }
+
+    .confirmation-box {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 24px;
+    }
+
+    .confirmation-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .return-link {
+      display: inline-block;
+      color: var(--link);
+      font-weight: bold;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .return-link:hover,
+    .return-link:focus {
+      color: var(--link-hover);
+    }
+
+    footer {
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: min(100% - 32px, 760px);
+        padding-top: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>THE CONTINUITY DIRECTORATE</h1>
+      <div class="department">PUBLICATION &amp; RETENTION OFFICE</div>
+    </header>
+
+    <div class="rule"></div>
+
+    <section aria-labelledby="confirmation-heading">
+      <h2 id="confirmation-heading">REQUEST CONFIRMED</h2>
+
+      <div class="confirmation-box">
+        <p>
+          Retained physical material has been allocated.
+        </p>
+
+        <p>
+          Dispatch will proceed through the approved distribution channel.
+        </p>
+
+        <p>
+          Existing records have been updated on your behalf.
+        </p>
+
+        <p class="muted">
+          No further action is required.
+        </p>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <a class="return-link" href="index.html">
+      RETURN TO PUBLIC INFORMATION
+    </a>
+
+    <div class="rule"></div>
+
+    <footer>
+      This page has been retained for continuity purposes.
+    </footer>
+  </main>
+</body>
+</html>
