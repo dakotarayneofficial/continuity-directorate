@@ -1,0 +1,270 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reception — The Continuity Directorate</title>
+
+  <style>
+    :root {
+      --paper: #e8e1d2;
+      --ink: #202020;
+      --faded-ink: #625d55;
+      --line: #2b2b2b;
+      --panel: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.075;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.65'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    main {
+      width: min(900px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 62px 0 72px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 6px;
+      font-size: clamp(25px, 4vw, 34px);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .department,
+    .muted,
+    footer {
+      color: var(--faded-ink);
+    }
+
+    .department {
+      font-size: 17px;
+      letter-spacing: 0.03em;
+    }
+
+    .rule {
+      height: 1px;
+      margin: 38px 0;
+      background: var(--line);
+    }
+
+    .notice-box {
+      border-left: 3px solid var(--line);
+      padding: 12px 16px;
+      color: var(--faded-ink);
+      margin-bottom: 34px;
+    }
+
+    .service-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .service-button {
+      display: block;
+      width: 100%;
+      padding: 20px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .service-button:hover,
+    .service-button:focus {
+      color: var(--faded-ink);
+    }
+
+    .service-button strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 17px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .response {
+      display: none;
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 20px;
+    }
+
+    .response.active {
+      display: block;
+    }
+
+    .response p:last-child {
+      margin-bottom: 0;
+    }
+
+    .response-reference {
+      margin-top: 20px;
+      color: var(--faded-ink);
+      font-size: 14px;
+    }
+
+    .return-link {
+      display: inline-block;
+      color: var(--ink);
+      font-weight: bold;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .return-link:hover,
+    .return-link:focus {
+      color: var(--faded-ink);
+    }
+
+    footer {
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: min(100% - 32px, 900px);
+        padding-top: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>THE CONTINUITY DIRECTORATE</h1>
+      <div class="department">RECEPTION</div>
+    </header>
+
+    <div class="rule"></div>
+
+    <section aria-labelledby="reception-heading">
+      <h2 id="reception-heading">PUBLIC ENQUIRIES</h2>
+
+      <div class="notice-box">
+        Reception is currently unattended.<br>
+        Existing enquiries continue to be processed automatically.
+      </div>
+
+      <div class="service-list">
+        <button class="service-button" type="button" data-response="issue-response">
+          <strong>REPORT AN ISSUE</strong>
+          <span class="muted">Submit an operational concern for review.</span>
+        </button>
+
+        <button class="service-button" type="button" data-response="assistance-response">
+          <strong>REQUEST ASSISTANCE</strong>
+          <span class="muted">Request additional support where required.</span>
+        </button>
+
+        <button class="service-button" type="button" data-response="complaint-response">
+          <strong>SUBMIT A COMPLAINT</strong>
+          <span class="muted">Record dissatisfaction with an existing service.</span>
+        </button>
+      </div>
+
+      <div id="issue-response" class="response" role="status">
+        <h3>OPERATIONAL STATUS VERIFIED</h3>
+        <p>
+          Existing operational status has been verified.
+          The reported issue does not affect scheduled activity.
+        </p>
+        <p>No further action is required.</p>
+        <p class="response-reference">Reference: CS-27194-A-I</p>
+      </div>
+
+      <div id="assistance-response" class="response" role="status">
+        <h3>ASSISTANCE STATUS CONFIRMED</h3>
+        <p>
+          Assistance remains available where required.
+          Current records indicate no additional assistance is necessary.
+        </p>
+        <p>No further action is required.</p>
+        <p class="response-reference">Reference: CS-27194-A-A</p>
+      </div>
+
+      <div id="complaint-response" class="response" role="status">
+        <h3>COMPLAINT STATUS CONFIRMED</h3>
+        <p>
+          Your complaint was anticipated and logged prior to submission.
+        </p>
+        <p>No further action is required.</p>
+        <p class="response-reference">Reference: CS-27194-A-C</p>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <a class="return-link" href="index.html">
+      RETURN TO PUBLIC INFORMATION
+    </a>
+
+    <div class="rule"></div>
+
+    <footer>
+      This page has been retained for continuity purposes.
+    </footer>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll(".service-button");
+    const responses = document.querySelectorAll(".response");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.response;
+
+        responses.forEach((response) => {
+          response.classList.remove("active");
+        });
+
+        document.getElementById(targetId).classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
+```
