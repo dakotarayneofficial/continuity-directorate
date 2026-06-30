@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request Retained Material — The Continuity Directorate</title>
+
+  <style>
+    :root {
+      --paper: #e8e1d2;
+      --ink: #1f1f1f;
+      --faded-ink: #5c5952;
+      --line: #2a2a2a;
+      --panel: #f4f0e6;
+      --link: #003f9e;
+      --link-hover: #001f5c;
+      --status-bg: #d9e8d0;
+      --status-border: #3a5a2f;
+      --status-text: #2a3f22;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    main {
+      width: min(760px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 56px 0 80px;
+    }
+
+    header {
+      margin-bottom: 12px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    dl,
+    dd {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: clamp(28px, 5vw, 38px);
+      line-height: 1.05;
+      letter-spacing: 0.025em;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .department {
+      color: var(--faded-ink);
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .rule {
+      height: 1px;
+      margin: 36px 0;
+      background: linear-gradient(to right, transparent, var(--line), transparent);
+    }
+
+    .reference-line {
+      margin-bottom: 22px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .request-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 24px;
+    }
+
+    .request-grid {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 12px 20px;
+      margin: 0;
+    }
+
+    dt {
+      color: var(--faded-ink);
+    }
+
+    dd {
+      margin: 0;
+    }
+
+    .availability-marker {
+      display: inline-block;
+      padding: 3px 10px;
+      border: 1px solid var(--status-border);
+      background: var(--status-bg);
+      color: var(--status-text);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .notice-box {
+      margin-top: 28px;
+      border-left: 4px solid var(--line);
+      padding: 14px 18px;
+      color: var(--faded-ink);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .payment-section {
+      margin-top: 30px;
+    }
+
+    .payment-section p {
+      color: var(--faded-ink);
+    }
+
+    .payment-button {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 12px 16px;
+      border: 2px solid var(--link);
+      background: transparent;
+      color: var(--link);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .payment-button:hover,
+    .payment-button:focus {
+      border-color: var(--link-hover);
+      color: var(--link-hover);
+    }
+
+    .return-link {
+      display: inline-block;
+      color: var(--link);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .return-link:hover,
+    .return-link:focus {
+      color: var(--link-hover);
+    }
+
+    footer {
+      margin-top: 48px;
+      color: var(--faded-ink);
+      font-size: 13.5px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: calc(100% - 32px);
+        padding-top: 36px;
+      }
+
+      .request-grid {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>THE CONTINUITY DIRECTORATE</h1>
+      <div class="department">PUBLICATION &amp; RETENTION OFFICE</div>
+    </header>
+
+    <div class="rule"></div>
+
+    <section aria-labelledby="request-heading">
+      <h2 id="request-heading">REQUEST RETAINED MATERIAL</h2>
+
+      <p class="reference-line">PUBLICATION CS-27194-A</p>
+
+      <div class="request-card">
+        <dl class="request-grid">
+          <dt>Associated record</dt>
+          <dd>Everything Is Happening Without You</dd>
+
+          <dt>Artist</dt>
+          <dd>The Cosmic Pipers</dd>
+
+          <dt>Format</dt>
+          <dd>Physical CD edition</dd>
+
+          <dt>Availability</dt>
+          <dd><span class="availability-marker">LIMITED AVAILABILITY</span></dd>
+
+          <dt>Fulfilment</dt>
+          <dd>Eclipta Records</dd>
+        </dl>
+      </div>
+
+      <div class="notice-box">
+        One retained physical copy may be requested while allocation remains available.
+      </div>
+
+      <section class="payment-section" aria-labelledby="payment-heading">
+        <h3 id="payment-heading">REQUEST CONFIRMATION</h3>
+
+        <p>
+          Payment and delivery details will be completed securely through Eclipta Records using Stripe.
+        </p>
+
+        <p>
+          The item, price and delivery information will be shown before payment is confirmed.
+        </p>
+
+        <a
+          class="payment-button"
+          href="https://buy.stripe.com/5kQcMY3tSa3lfGZ9pr1RC08"
+        >
+          CONTINUE TO PAYMENT
+        </a>
+      </section>
+    </section>
+
+    <div class="rule"></div>
+
+    <a class="return-link" href="publications.html">
+      RETURN TO PUBLICATIONS
+    </a>
+
+    <div class="rule"></div>
+
+    <footer>
+      This page has been retained for continuity purposes.<br>
+      Last reviewed: 14 October 1997
+    </footer>
+  </main>
+</body>
+</html>
