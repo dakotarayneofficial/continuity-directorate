@@ -1,21 +1,21 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Continuity Directorate — Public Information</title>
-
   <style>
     :root {
-  --paper: #e8e1d2;
-  --ink: #202020;
-  --faded-ink: #625d55;
-  --line: #2b2b2b;
-  --panel: rgba(255, 255, 255, 0.08);
-  --link: #003f9e;
-  --link-hover: #001f5c;
-}
+      --paper: #e8e1d2;
+      --ink: #1f1f1f;
+      --faded-ink: #5c5952;
+      --line: #2a2a2a;
+      --panel: #f4f0e6;
+      --link: #003f9e;
+      --link-hover: #001f5c;
+      --status-bg: #d9e8d0;
+      --status-border: #3a5a2f;
+    }
 
     * {
       box-sizing: border-box;
@@ -27,72 +27,80 @@
       color: var(--ink);
       font-family: "Courier New", Courier, monospace;
       font-size: 16px;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
+    /* Subtle paper/scan texture */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.075;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.65'/%3E%3C/svg%3E");
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       mix-blend-mode: multiply;
     }
 
     main {
-      width: min(900px, calc(100% - 48px));
+      width: min(920px, calc(100% - 48px));
       margin: 0 auto;
-      padding: 62px 0 72px;
+      padding: 56px 0 80px;
     }
 
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
+    header {
+      margin-bottom: 12px;
     }
 
     h1 {
-      margin-bottom: 6px;
-      font-size: clamp(25px, 4vw, 34px);
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-    }
-
-    h2 {
-      margin-bottom: 18px;
-      font-size: 20px;
-      line-height: 1.25;
-    }
-
-    h3 {
-      margin-bottom: 10px;
-      font-size: 17px;
+      margin: 0 0 4px;
+      font-size: clamp(28px, 5vw, 38px);
+      line-height: 1.05;
+      letter-spacing: 0.025em;
+      font-weight: 700;
     }
 
     .department {
       color: var(--faded-ink);
-      font-size: 17px;
-      letter-spacing: 0.03em;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      font-weight: 600;
     }
 
     .rule {
       height: 1px;
-      margin: 38px 0;
-      background: var(--line);
+      margin: 36px 0;
+      background: linear-gradient(to right, transparent, var(--line), transparent);
     }
 
     .status-line {
-      margin-bottom: 24px;
-      font-size: 18px;
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .status-value {
+      display: inline-block;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 4px 18px;
+      border: 2px solid var(--status-border);
+      background: var(--status-bg);
+      color: #2a3f22;
+      margin-left: 12px;
+      vertical-align: middle;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.08);
     }
 
     .status-box {
       border: 1px solid var(--line);
       background: var(--panel);
-      padding: 20px;
+      padding: 22px 24px;
+      line-height: 1.65;
+    }
+
+    .status-box p {
+      margin: 0 0 8px;
     }
 
     .status-box p:last-child {
@@ -100,51 +108,63 @@
     }
 
     .publication {
-      margin-top: 42px;
+      margin-top: 48px;
     }
 
     .publication-code {
-      margin-bottom: 22px;
-      font-size: 20px;
-      font-weight: bold;
+      margin: 8px 0 24px;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
     .availability-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
     }
 
     .availability-card {
-      min-height: 190px;
+      min-height: 200px;
       border: 1px solid var(--line);
-      padding: 20px;
+      background: var(--panel);
+      padding: 22px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .availability-card p {
-      color: var(--faded-ink);
+    .availability-card h3 {
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 700;
     }
 
-.action-link,
-.section-link {
-  display: inline-block;
-  width: fit-content;
-  color: var(--link);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: bold;
-}
+    .availability-card p {
+      color: var(--faded-ink);
+      margin: 0 0 16px;
+    }
 
-.action-link:hover,
-.action-link:focus,
-.section-link:hover,
-.section-link:focus {
-  color: var(--link-hover);
-}
+    .action-link,
+    .section-link {
+      display: inline-block;
+      width: fit-content;
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 700;
+      font-size: 15.5px;
+      letter-spacing: 0.01em;
+    }
+
+    .action-link:hover,
+    .action-link:focus,
+    .section-link:hover,
+    .section-link:focus {
+      color: var(--link-hover);
+      text-decoration-thickness: 2px;
+    }
 
     .pending {
       color: var(--faded-ink);
@@ -154,37 +174,48 @@
 
     .notice {
       margin-top: 32px;
-      border-left: 3px solid var(--line);
-      padding: 12px 16px;
+      border-left: 4px solid var(--line);
+      padding: 14px 18px;
       color: var(--faded-ink);
+      background: rgba(0, 0, 0, 0.02);
     }
 
     .additional-information {
-      margin-top: 42px;
+      margin-top: 48px;
+    }
+
+    .additional-information h2 {
+      margin-bottom: 16px;
     }
 
     .additional-information p {
       color: var(--faded-ink);
+      margin-bottom: 14px;
     }
 
     footer {
+      margin-top: 48px;
       color: var(--faded-ink);
-      font-size: 14px;
+      font-size: 13.5px;
+      letter-spacing: 0.02em;
     }
 
     @media (max-width: 640px) {
       main {
-        width: min(100% - 32px, 900px);
-        padding-top: 38px;
+        width: calc(100% - 32px);
+        padding-top: 36px;
       }
-
       .availability-grid {
         grid-template-columns: 1fr;
+      }
+      .status-value {
+        display: block;
+        margin: 12px 0 0;
+        width: fit-content;
       }
     }
   </style>
 </head>
-
 <body>
   <main>
     <header>
@@ -196,7 +227,8 @@
 
     <section aria-labelledby="system-status">
       <p id="system-status" class="status-line">
-        <strong>Service Status:</strong> NOMINAL
+        <strong>Service Status:</strong>
+        <span class="status-value">NOMINAL</span>
       </p>
 
       <div class="status-box">
@@ -210,15 +242,15 @@
       <div class="rule"></div>
 
       <h2 id="publication-heading">PUBLICATION CS-27194-A</h2>
-
       <p class="publication-code">RETAINED AUDIO DOCUMENT</p>
 
       <p>
-        Associated material has been made available in limited physical format.
+        Associated material has been made available in limited physical format.<br>
         General audio availability remains pending.
       </p>
 
       <div class="availability-grid">
+        <!-- Physical Material -->
         <article class="availability-card">
           <div>
             <h3>RETAINED PHYSICAL MATERIAL</h3>
@@ -226,34 +258,33 @@
               A limited physical edition has been made available through the approved distribution channel.
             </p>
           </div>
-
-      
-<a
-  class="action-link"
-  href="https://buy.stripe.com/5kQcMY3tSa3lfGZ9pr1RC08"
->
-  REQUEST RETAINED MATERIAL
-</a>
-
-
+          <a
+            class="action-link"
+            href="https://buy.stripe.com/5kQcMY3tSa3lfGZ9pr1RC08"
+            target="_blank"
+            rel="noopener"
+          >
+            REQUEST RETAINED MATERIAL
+          </a>
         </article>
 
+        <!-- Audio Availability -->
         <article class="availability-card">
           <div>
             <h3>GENERAL AUDIO AVAILABILITY</h3>
             <p>
-              Future access may now be recorded. General audio availability remains scheduled for 01 August 2026.
+              Future access may now be recorded.<br>
+              General audio availability remains scheduled for <strong>01 August 2026</strong>.
             </p>
           </div>
-
           <a
-  class="action-link"
-  href="https://distrokid.com/hyperfollow/thecosmicpipers/everything-is-happening-without-you"
-  target="_blank"
-  rel="noopener"
->
-  RECORD FUTURE AVAILABILITY
-</a>
+            class="action-link"
+            href="https://distrokid.com/hyperfollow/thecosmicpipers/everything-is-happening-without-you"
+            target="_blank"
+            rel="noopener"
+          >
+            RECORD FUTURE AVAILABILITY
+          </a>
         </article>
       </div>
 
@@ -264,53 +295,31 @@
 
     <section class="additional-information">
       <div class="rule"></div>
-
       <h2>ADDITIONAL PUBLIC INFORMATION</h2>
-
       <p>
-        Current operational information is available through the following service.
+        Current operational information is available through the following services:
       </p>
 
-  
-<p>
-  <a class="section-link" href="system-status.html">
-    VIEW SYSTEM STATUS
-  </a>
-</p>
-
-<p>
-  <a class="section-link" href="public-notices.html">
-    VIEW PUBLIC NOTICES
-  </a>
-</p>
-
-
-<p>
-  <a class="section-link" href="reception.html">
-    ACCESS RECEPTION
-  </a>
-</p>
-
-
-<p>
-  <a class="section-link" href="publications.html">
-    VIEW PUBLICATIONS
-  </a>
-</p>
-
-
-
-
-
-      
+      <p>
+        <a class="section-link" href="system-status.html">VIEW SYSTEM STATUS</a>
+      </p>
+      <p>
+        <a class="section-link" href="public-notices.html">VIEW PUBLIC NOTICES</a>
+      </p>
+      <p>
+        <a class="section-link" href="reception.html">ACCESS RECEPTION</a>
+      </p>
+      <p>
+        <a class="section-link" href="publications.html">VIEW PUBLICATIONS</a>
+      </p>
     </section>
 
     <div class="rule"></div>
 
     <footer>
-      This page has been retained for continuity purposes.
+      This page has been retained for continuity purposes.<br>
+      Last reviewed: 14 October 1997
     </footer>
   </main>
 </body>
 </html>
-```
