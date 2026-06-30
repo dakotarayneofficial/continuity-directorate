@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>System Status — The Continuity Directorate</title>
+
   <style>
     :root {
       --paper: #e8e1d2;
@@ -13,12 +14,36 @@
       --panel: #f4f0e6;
       --link: #003f9e;
       --link-hover: #001f5c;
-      --status-bg: #d9e8d0;
-      --status-border: #3a5a2f;
+
+      --good-bg: #d9e8d0;
+      --good-border: #3a5a2f;
+      --good-text: #2a3f22;
+
+      --available-bg: #d9e5ef;
+      --available-border: #355a77;
+      --available-text: #243f56;
+
+      --current-bg: #d7e7e1;
+      --current-border: #356457;
+      --current-text: #24483d;
+
+      --scheduled-bg: #eee3c7;
+      --scheduled-border: #806a2d;
+      --scheduled-text: #5f4c1d;
+
+      --processing-bg: #f0dfc3;
+      --processing-border: #875f25;
+      --processing-text: #684616;
+
+      --inactive-bg: #e2dfd7;
+      --inactive-border: #666159;
+      --inactive-text: #4e4a44;
     }
+
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       background: var(--paper);
@@ -27,6 +52,7 @@
       font-size: 16px;
       line-height: 1.6;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -37,14 +63,17 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       mix-blend-mode: multiply;
     }
+
     main {
       width: min(900px, calc(100% - 48px));
       margin: 0 auto;
       padding: 56px 0 80px;
     }
+
     header {
       margin-bottom: 12px;
     }
+
     h1 {
       margin: 0 0 4px;
       font-size: clamp(28px, 5vw, 38px);
@@ -52,70 +81,118 @@
       letter-spacing: 0.025em;
       font-weight: 700;
     }
+
     .department {
       color: var(--faded-ink);
       font-size: 18px;
       letter-spacing: 0.04em;
       font-weight: 600;
     }
+
     .rule {
       height: 1px;
       margin: 36px 0;
       background: linear-gradient(to right, transparent, var(--line), transparent);
     }
+
     .state {
-      font-size: 18px;
       margin-bottom: 12px;
+      font-size: 18px;
     }
+
     .status-value {
       display: inline-block;
+      margin-left: 12px;
+      padding: 4px 18px;
+      border: 2px solid var(--good-border);
+      background: var(--good-bg);
+      color: var(--good-text);
       font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.06em;
-      padding: 4px 18px;
-      border: 2px solid var(--status-border);
-      background: var(--status-bg);
-      color: #2a3f22;
-      margin-left: 12px;
       vertical-align: middle;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
     }
+
     .updated {
+      margin-bottom: 28px;
       color: var(--faded-ink);
       font-size: 14px;
-      margin-bottom: 28px;
     }
+
     .systems {
       border-top: 1px solid var(--line);
     }
+
     .system-row {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 24px;
-      padding: 18px 0;
+      align-items: center;
+      padding: 16px 0;
       border-bottom: 1px solid var(--line);
     }
+
     .system-name {
       font-weight: 700;
     }
+
     .system-status {
-      text-align: right;
+      display: inline-block;
+      min-width: 128px;
+      padding: 4px 10px;
+      border: 1px solid;
+      text-align: center;
       white-space: nowrap;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.025em;
     }
-    .system-status.nominal {
-      color: var(--ink);
+
+    .system-status.good {
+      border-color: var(--good-border);
+      background: var(--good-bg);
+      color: var(--good-text);
     }
+
+    .system-status.available {
+      border-color: var(--available-border);
+      background: var(--available-bg);
+      color: var(--available-text);
+    }
+
+    .system-status.current {
+      border-color: var(--current-border);
+      background: var(--current-bg);
+      color: var(--current-text);
+    }
+
+    .system-status.scheduled {
+      border-color: var(--scheduled-border);
+      background: var(--scheduled-bg);
+      color: var(--scheduled-text);
+    }
+
     .system-status.processing {
-      color: var(--faded-ink);
+      border-color: var(--processing-border);
+      background: var(--processing-bg);
+      color: var(--processing-text);
     }
+
+    .system-status.no-action {
+      border-color: var(--inactive-border);
+      background: var(--inactive-bg);
+      color: var(--inactive-text);
+    }
+
     .notice {
       margin-top: 34px;
       border-left: 4px solid var(--line);
       padding: 14px 18px;
       color: var(--faded-ink);
-      background: rgba(0,0,0,0.02);
+      background: rgba(0, 0, 0, 0.02);
     }
+
     .return-link {
       display: inline-block;
       color: var(--link);
@@ -123,35 +200,44 @@
       text-decoration: underline;
       text-underline-offset: 4px;
     }
+
     .return-link:hover,
     .return-link:focus {
       color: var(--link-hover);
     }
+
     footer {
       margin-top: 48px;
       color: var(--faded-ink);
       font-size: 13.5px;
     }
+
     @media (max-width: 640px) {
       main {
         width: calc(100% - 32px);
         padding-top: 36px;
       }
+
       .system-row {
         grid-template-columns: 1fr;
-        gap: 4px;
+        gap: 8px;
       }
+
       .system-status {
+        width: fit-content;
+        min-width: 0;
         text-align: left;
       }
+
       .status-value {
         display: block;
-        margin: 12px 0 0;
         width: fit-content;
+        margin: 12px 0 0;
       }
     }
   </style>
 </head>
+
 <body>
   <main>
     <header>
@@ -174,40 +260,49 @@
       <div class="systems">
         <div class="system-row">
           <div class="system-name">Public Facilities</div>
-          <div class="system-status nominal">OPERATIONAL</div>
+          <div class="system-status good">OPERATIONAL</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Publication Services</div>
-          <div class="system-status nominal">NOMINAL</div>
+          <div class="system-status good">NOMINAL</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Records &amp; Retention</div>
-          <div class="system-status nominal">ACTIVE</div>
+          <div class="system-status good">ACTIVE</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Route Guidance</div>
-          <div class="system-status nominal">AVAILABLE</div>
+          <div class="system-status available">AVAILABLE</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Accommodation Systems</div>
-          <div class="system-status nominal">READY</div>
+          <div class="system-status available">READY</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Memory Archive</div>
-          <div class="system-status nominal">SYNCHRONIZED</div>
+          <div class="system-status current">SYNCHRONIZED</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Assessment Services</div>
-          <div class="system-status nominal">ACCEPTING SCHEDULED ATTENDANCE</div>
+          <div class="system-status scheduled">ACCEPTING SCHEDULED ATTENDANCE</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Weather Integration</div>
-          <div class="system-status nominal">CURRENT</div>
+          <div class="system-status current">CURRENT</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Human Liaison</div>
-          <div class="system-status nominal">NO ACTION REQUIRED</div>
+          <div class="system-status no-action">NO ACTION REQUIRED</div>
         </div>
+
         <div class="system-row">
           <div class="system-name">Continuity Synchronisation</div>
           <div class="system-status processing">PROCESSING</div>
@@ -220,7 +315,11 @@
     </section>
 
     <div class="rule"></div>
-    <a class="return-link" href="index.html">RETURN TO PUBLIC INFORMATION</a>
+
+    <a class="return-link" href="index.html">
+      RETURN TO PUBLIC INFORMATION
+    </a>
+
     <div class="rule"></div>
 
     <footer>
