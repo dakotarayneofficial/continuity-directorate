@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Request Retained Material — The Continuity Directorate</title>
+  <title>Retained Material Allocation — The Continuity Directorate</title>
 
   <style>
     :root {
@@ -110,7 +110,7 @@
 
     .request-grid {
       display: grid;
-      grid-template-columns: 150px minmax(0, 1fr);
+      grid-template-columns: 170px minmax(0, 1fr);
       gap: 12px 20px;
       margin: 0;
     }
@@ -142,15 +142,15 @@
       background: rgba(0, 0, 0, 0.02);
     }
 
-    .payment-section {
+    .fulfilment-section {
       margin-top: 30px;
     }
 
-    .payment-section p {
+    .fulfilment-section p {
       color: var(--faded-ink);
     }
 
-    .payment-button {
+    .fulfilment-button {
       display: inline-block;
       margin-top: 8px;
       padding: 12px 16px;
@@ -163,10 +163,16 @@
       letter-spacing: 0.02em;
     }
 
-    .payment-button:hover,
-    .payment-button:focus {
+    .fulfilment-button:hover,
+    .fulfilment-button:focus {
       border-color: var(--link-hover);
       color: var(--link-hover);
+    }
+
+    .external-note {
+      margin-top: 18px;
+      color: var(--faded-ink);
+      font-size: 14px;
     }
 
     .return-link {
@@ -212,50 +218,56 @@
     <div class="rule"></div>
 
     <section aria-labelledby="request-heading">
-      <h2 id="request-heading">REQUEST RETAINED MATERIAL</h2>
+      <h2 id="request-heading">RETAINED MATERIAL ALLOCATION</h2>
 
       <p class="reference-line">PUBLICATION CS-27194-A</p>
 
       <div class="request-card">
         <dl class="request-grid">
-          <dt>Associated record</dt>
-          <dd>Everything Is Happening Without You</dd>
+          <dt>Classification</dt>
+          <dd>Retained Audio Document</dd>
 
-          <dt>Artist</dt>
-          <dd>The Cosmic Pipers</dd>
+          <dt>Issued format</dt>
+          <dd>Compact disc in standard jewel-case presentation</dd>
 
-          <dt>Format</dt>
-          <dd>Physical CD edition</dd>
+          <dt>Accompanying material</dt>
+          <dd>Printed booklet and issued documentation</dd>
+
+          <dt>Presentation status</dt>
+          <dd>Artwork and enclosed reference material included</dd>
 
           <dt>Availability</dt>
-          <dd><span class="availability-marker">LIMITED AVAILABILITY</span></dd>
-
-          <dt>Fulfilment</dt>
-          <dd>Eclipta Records</dd>
+          <dd>
+            <span class="availability-marker">LIMITED ALLOCATION</span>
+          </dd>
         </dl>
       </div>
 
       <div class="notice-box">
-        One retained physical copy may be requested while allocation remains available.
+        The retained edition is issued as a complete physical record. Audio material, printed matter and associated documentation remain enclosed within the approved presentation format.
       </div>
 
-      <section class="payment-section" aria-labelledby="payment-heading">
-        <h3 id="payment-heading">REQUEST CONFIRMATION</h3>
+      <section class="fulfilment-section" aria-labelledby="fulfilment-heading">
+        <h3 id="fulfilment-heading">EXTERNAL FULFILMENT</h3>
 
         <p>
-          Payment and delivery details will be completed securely through Eclipta Records using Stripe.
+          Allocation may now proceed through the approved distribution channel.
         </p>
 
         <p>
-          The item, price and delivery information will be shown before payment is confirmed.
+          Product details, price and delivery information will be presented before any transaction is confirmed.
         </p>
 
         <a
-          class="payment-button"
+          class="fulfilment-button"
           href="https://buy.stripe.com/5kQcMY3tSa3lfGZ9pr1RC08"
         >
-          CONTINUE TO PAYMENT
+          PROCEED TO FULFILMENT
         </a>
+
+        <p class="external-note">
+          Fulfilment and payment are provided by Eclipta Records through Stripe.
+        </p>
       </section>
     </section>
 
